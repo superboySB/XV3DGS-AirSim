@@ -75,23 +75,24 @@ def create_ply_from_text(text_path, output_ply_path, header):
 
 
 file_path = 'D:\\downloads\\demo_fox_gs.ply'
+# file_path = 'D:\\3dgs\\outputs\\bungeenerf\\rome\\baseline\\latest\\point_cloud\\iteration_40000\\point_cloud.ply'
 
 # TODO： 转换过来
 # Parse PLY file and extract header and vertices
-# header, binary_vertices = parse_binary_ply(file_path)
+header, binary_vertices = parse_binary_ply(file_path)
 
-# # Concatenate binary vertex data
-# full_binary_data = b''.join(binary_vertices)
+# Concatenate binary vertex data
+full_binary_data = b''.join(binary_vertices)
 
-# # Parse the vertex data
-# parsed_vertices = parse_vertex_data(full_binary_data, header)
+# Parse the vertex data
+parsed_vertices = parse_vertex_data(full_binary_data, header)
 
-# # Save parsed vertices to a text file
-# output_path = 'parsed_vertices.txt'
-# with open(output_path, 'w') as file:
-#     for vertex in parsed_vertices:
-#         file.write(vertex + "\n")
+# Save parsed vertices to a text file
+output_path = 'parsed_vertices.txt'
+with open(output_path, 'w') as file:
+    for vertex in parsed_vertices:
+        file.write(vertex + "\n")
 
 # TODO: 转换回去
-header, _ = parse_binary_ply(file_path)
-create_ply_from_text('parsed_vertices.txt', 'output.ply', header)
+# header, _ = parse_binary_ply(file_path)
+# create_ply_from_text('parsed_vertices.txt', 'output.ply', header)
