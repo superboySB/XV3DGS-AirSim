@@ -10,6 +10,6 @@ def get_vertex_count_from_ply_header(ply_file_path):
     return None  # 如果文件格式不正确或找不到点云数量，则返回None
 
 # 使用示例
-ply_file_path = 'C:\\Users\\60489\\Desktop\\test\\demo_office_gs.ply'  # 替换为你的PLY文件路径
+ply_file_path = 'D:\\3dgs\\outputs\\tandt\\truck\\baseline\\latest\\point_cloud\\iteration_40000\\point_cloud.ply'  # 替换为你的PLY文件路径
 vertex_count = get_vertex_count_from_ply_header(ply_file_path)
 print(f"Point cloud count: {vertex_count}")
