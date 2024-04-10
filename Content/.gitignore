@@ -3,4 +3,5 @@
 !Developers
 !XV3dGS
 !.gitignore
-demo.umap
+!demo_HLOD0_Instancing.uasset
+!demo.umap
