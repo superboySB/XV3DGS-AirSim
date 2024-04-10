@@ -3,12 +3,35 @@
 	"EngineAssociation": "5.2",
 	"Category": "",
 	"Description": "",
+	"Modules": [
+		{
+			"Name": "XV3DGS",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"AirSim"
+			]
+		}
+	],
 	"Plugins": [
 		{
 			"Name": "ModelingToolsEditorMode",
 			"Enabled": true,
 			"TargetAllowList": [
 				"Editor"
+			]
+		},
+		{
+			"Name": "AirSim",
+			"Enabled": true
+		},
+		{
+			"Name": "XV3dGS",
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/d186799254dc405f9bde7a2a81b34733",
+			"SupportedTargetPlatforms": [
+				"Win64"
 			]
 		}
 	]
