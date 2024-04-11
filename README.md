@@ -7,7 +7,6 @@
 - Visual Studio
 - Several good videos for colmap (optional)
 
-
 ## 使用简介
 **我们需要使用UE5.2 + Windows**，结合[官方教程](https://github.com/xverse-engine/XV3DGS-UEPlugin?tab=readme-ov-file#plugin-download)，在官方release界面下载5.2版本的插件，并解压放置在`Plugins`文件夹内，然后启动projects即可，接下来我们不需要默认使用官方提供的[windows本地训练3DGS脚本](https://github.com/xverse-engine/XV3DGS-UEPlugin?tab=readme-ov-file#local-training-on-windows-platform)，而也可以使用我们自己的方法，只要注意官方说的[事项](https://github.com/xverse-engine/XV3DGS-UEPlugin/blob/main/Media/CaptureDOC_CN.md)合理拍摄一个mp4，最终就能训练得到一个还可以的相应ply点云文件，并用[XV3DGS插件](https://github.com/xverse-engine/XV3DGS-UEPlugin?tab=readme-ov-file#import-your-guassian-splatting-model)轻松导入到UE Editror中进行使用，这里官方还提供了[种种特性](https://github.com/xverse-engine/XV3DGS-UEPlugin?tab=readme-ov-file#feature-introduction)（如仿射变换、裁剪、打光、变色）,这里不做赘述。具体Airsim的非常详细的用法直接参考知乎大佬：[宁子安](https://www.zhihu.com/people/ningzian/posts)。
 
@@ -43,14 +42,14 @@ git clone https://github.com/superboySB/XV3DGS-AirSim
 
 然后我们插入一个玩家出生点给我们的Airsim作为起始点
 [![image.png](https://i.postimg.cc/cHpGW8XY/image.png)](https://postimg.cc/2b7KF3p8)
-目前AirSim的`settings.json`如下，只是简单的引入一辆车作为例子，我们其实可以换成PX4飞机，并且也可以尝试接入ROS/ROS2去获取相应的topics，或者是使用更加复杂的传感器，这些功能都还是保留的，详见官方介绍。
+目前AirSim的`settings.json`如下，只是简单的引入一辆车作为例子，我们其实可以换成PX4飞机，也可以尝试接入ROS/ROS2去获取相应的topics、使用更加复杂的传感器、直接用手柄或者方向盘控制相应车机等等，这些功能都还是保留的，详见官方介绍。
 ```json
 {
     "SettingsVersion": 1.2,
     "SimMode": "Car"
   }
 ```
-最后,可以点击播放，正常在Editor运行这个仿真了，基本效果如下，目前RGB的获取是比较好的，其余的深度和语义暂时拿不到，这样得到的一个方案也可以进一步打包，也支持对Airsim源码本身、UE场景本身进行后续二次开发，当然也期待元象能尽快把这个插件做的更好！
+最后,可以点击播放，正常在Editor运行这个仿真了，基本效果如下，目前RGB的获取是比较好的，其余的深度和语义暂时拿不到，这样得到的一个方案也可以进一步打包，也支持对Airsim源码本身、UE场景本身进行后续二次开发，当然也期待元象能**尽快把这个插件做的更好**！
 [![image.png](https://i.postimg.cc/YCKKZghw/image.png)](https://postimg.cc/7fVWT53B)
 [![image.png](https://i.postimg.cc/0Q3HmRSq/image.png)](https://postimg.cc/ZB8ctQjf)
 
