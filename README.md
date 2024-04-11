@@ -2,8 +2,10 @@
 搭建一个在Real2Sim模式中开飞机/汽车的workflow
 
 ## 依赖
-- 良好的拍摄一段视频（示例）
-- XV3DGS虚幻插件
+- Windows 10 or newer
+- Unreal Engine 5.2
+- Visual Studio
+- Several good videos for colmap (optional)
 
 
 ## 使用简介
@@ -14,7 +16,13 @@
 [![9d2bf9c51bf73069ae41e836ef430aa.png](https://i.postimg.cc/QC2DChFP/9d2bf9c51bf73069ae41e836ef430aa.png)](https://postimg.cc/RJLybrQQ)
 
 ## 常见用法示例
-
+安装完依赖之后，我们假设已经从拍摄的视频中完成了相应的sfm和3dgs重建，并且得到了相应的ply点云文件，需要导入到一个UE工程里，并且兼顾Airsim原本功能的机器人控制。为此，给出一个示例用法，先下载项目
+```sh
+git clone https://github.com/superboySB/XV3DGS-AirSim
+```
+打开`Developer Command Prompt for VS`,然后进入项目AirSim部分的源码目录后运行编译脚本`.\XV3DGS-AirSim\AirSim\build.cmd`
+[![image.png](https://i.postimg.cc/KzR1qDh7/image.png)](https://postimg.cc/xJVjqHCq)
+编译成功后，将得到的插件`.\XV3DGS-AirSim\AirSim\Unreal\Plugins\AirSim`移动到`.\XV3DGS-AirSim\Plugins`内部，然后右键源目录的`XV3DGS.uproject`,生成相应的VS工程索引
 
 ## Acknowledgement
 The work was done when the author visited Qiyuan Lab, supervised by [Chao Wang](https://scholar.google.com/citations?user=qmDGt-kAAAAJ&hl=zh-CN).
