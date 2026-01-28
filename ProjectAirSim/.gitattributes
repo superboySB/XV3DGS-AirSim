@@ -1,0 +1,12 @@
+# In case one of our team member has core.autocrlf not set, set it to auto so that the line endings
+# are appropriately handled across platforms(win, linux) and in the repo
+* text=auto
+
+# Preserve LF line endings in Linux shell scripts to make sure they are executable
+*.sh text eol=lf
+
+# Preserve CR/LF line endings in Windows batch and cmd scripts to make sure they are executable
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+*.sln text eol=crlf

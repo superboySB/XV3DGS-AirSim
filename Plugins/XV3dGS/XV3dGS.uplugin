@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.0",
+	"VersionName": "1.1.5.1",
 	"FriendlyName": "XV3dGS",
 	"Description": "A 3D Gaussian Splatting rendering plug-in for Unreal Engine and has various advanced features to easily modify your GS model",
 	"Category": "Other",
@@ -32,6 +32,20 @@
 			"PlatformAllowList": [
 				"Win64"
 			]
+		},
+		{
+			"Name": "GSEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		}
+	],
+	"LocalizationTargets": [
+		{
+			"Name": "XV3dGSLoc",
+			"LoadingPolicy": "Editor"
 		}
 	],
 	"Plugins": [

@@ -3,29 +3,58 @@
 
 ## 依赖
 - Windows 10 or newer
-- Unreal Engine 5.2
-- Visual Studio
+- Unreal Engine 5.2 , 建议在Epic启动器安装
+- Visual Studio 2022 ，仅提供编译环境、不再在上面GUI开发，建议就用2022不要用新版，并且安装基于C++的桌面工具、VS MSVC v143 14.37.32822 、VS 2022 C++ x64/x86 build tools 
+- Visual Studio Code
 - Several good videos for colmap (optional)
 
 ## 使用简介
-**我们需要使用UE5.2 + Windows**，结合[官方教程](https://github.com/xverse-engine/XV3DGS-UEPlugin?tab=readme-ov-file#plugin-download)，在官方release界面下载5.2版本的插件，并解压放置在`Plugins`文件夹内，然后启动projects即可，接下来我们不需要默认使用官方提供的[windows本地训练3DGS脚本](https://github.com/xverse-engine/XV3DGS-UEPlugin?tab=readme-ov-file#local-training-on-windows-platform)，而也可以使用我们自己的方法，只要注意官方说的[事项](https://github.com/xverse-engine/XV3DGS-UEPlugin/blob/main/Media/CaptureDOC_CN.md)合理拍摄一个mp4，最终就能训练得到一个还可以的相应ply点云文件，并用[XV3DGS插件](https://github.com/xverse-engine/XV3DGS-UEPlugin?tab=readme-ov-file#import-your-guassian-splatting-model)轻松导入到UE Editror中进行使用，这里官方还提供了[种种特性](https://github.com/xverse-engine/XV3DGS-UEPlugin?tab=readme-ov-file#feature-introduction)（如仿射变换、裁剪、打光、变色）,这里不做赘述。具体Airsim的非常详细的用法直接参考知乎大佬：[宁子安](https://www.zhihu.com/people/ningzian/posts)。
+**我们需要使用UE5.2 + Windows**，结合[官方教程](https://github.com/xverse-engine/XScene-UEPlugin/blob/main/UEPlugin/README_CN.md)，在官方release界面下载5.2版本的插件，并解压放置在`Plugins`文件夹内，然后启动projects即可，接下来我们不需要默认使用官方提供的[windows本地训练3DGS脚本](https://github.com/xverse-engine/XScene-UEPlugin/tree/main/UEPlugin#local-training-on-windows-platform)，而也可以使用我们自己的方法，只要注意官方说的[事项](https://github.com/xverse-engine/XScene-UEPlugin/blob/main/UEPlugin/Media/CaptureDOC_CN.md)合理拍摄一个mp4，最终就能训练得到一个还可以的相应ply点云文件，并用[XV3DGS插件](https://github.com/xverse-engine/XScene-UEPlugin/blob/main/UEPlugin/README_CN.md#%E5%AF%BC%E5%85%A5%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84-guassian-splatting-%E5%9C%BA%E6%99%AF)轻松导入到UE Editror中进行使用，这里官方还提供了[种种特性](https://github.com/xverse-engine/XScene-UEPlugin/tree/main/UEPlugin#feature-introduction)（如仿射变换、裁剪、打光、变色）,这里不做赘述。具体Airsim的非常详细的用法直接参考知乎大佬：[宁子安](https://www.zhihu.com/people/ningzian/posts), **强烈建议先看完再装**。
 
-[![9204209a036a4cc5118a55819e81a50.png](https://i.postimg.cc/pyMNxC7M/9204209a036a4cc5118a55819e81a50.png)](https://postimg.cc/YLRDz6Md)
+![](images/9204209a036a4cc5118a55819e81a50.png)
+![](images/9d2bf9c51bf73069ae41e836ef430aa.png)
 
-[![9d2bf9c51bf73069ae41e836ef430aa.png](https://i.postimg.cc/QC2DChFP/9d2bf9c51bf73069ae41e836ef430aa.png)](https://postimg.cc/RJLybrQQ)
+## 配置
+安装完全部依赖之后，我们假设已经从自己拍摄（或自带）的视频中完成了相应的sfm和3dgs重建，并且得到了相应的ply点云文件，需要导入到一个UE工程里，并且兼顾Airsim原本功能的机器人控制。为此，给出一个示例用法(假设UE和项目都放在D盘），先下载项目
+```powershell
+cd D:\projects
 
-## 常见用法示例
-安装完依赖之后，我们假设已经从拍摄的视频中完成了相应的sfm和3dgs重建，并且得到了相应的ply点云文件，需要导入到一个UE工程里，并且兼顾Airsim原本功能的机器人控制。为此，给出一个示例用法，先下载项目
-```sh
 git clone https://github.com/superboySB/XV3DGS-AirSim
 ```
-打开`Developer Command Prompt for VS`,然后进入项目AirSim部分的源码目录后运行编译脚本`.\XV3DGS-AirSim\AirSim\build.cmd`,请保持网络畅通，注意选定编译版本为`5.2`
-[![image.png](https://i.postimg.cc/KzR1qDh7/image.png)](https://postimg.cc/xJVjqHCq)
+![](images/image.png)
+打开`Developer Command Prompt for VS 2022`进行集成环境编译，注意UE 5.2无法支持visual studio的预装比较新的 MSVC compiler 14.4+，需要改一下编译器环境。这里如需切换盘符直接输入`D:`即可,运行编译脚本,请保持网络畅通
+```powershell
+"C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.37.32822
 
-编译成功后，将得到的插件`.\XV3DGS-AirSim\AirSim\Unreal\Plugins\AirSim`移动到`.\XV3DGS-AirSim\Plugins`内部，然后右键源目录的`XV3DGS.uproject`,生成相应的VS工程索引
+# D：
+cd .\projects\XV3DGS-AirSim\ProjectAirSim\
+
+build.cmd simlibs_debug
+```
+可以回到`windows terminal`了，根据示例项目来生成visual studio工程文件,注意选定编译版本为`5.2`
+```powershell
+cd D:\projects\XV3DGS-AirSim\ProjectAirSim\unreal\Blocks
+
+
+$env:UE_ROOT = "D:\games\UE_5.2"
+
+.\blocks_genprojfiles_vscode.bat
+```
+然后在visual code里面用`open workspace from file`的方式打开`Blocks.code-workspace`，然后在单独的workspace中进行测试，注意仔细参考这里配置vscode: https://iamaisim.github.io/ProjectAirSim/development/use_source.html#vs-code-windows-linux
+
+一定耐心等所有跟configuration相关的读条，然后一定要`build`一定`ctest`。完事后，可在GUI中打开UE editor
+
+![](images\screenshot-20260128-110146.png)
+
+
+## 常见用法示例
+
+
+
+然后右键源目录的`XV3DGS.uproject`,生成相应的VS工程索引
 [![image.png](https://i.postimg.cc/nh53z0Vg/image.png)](https://postimg.cc/0zYYXGw0)
 
-打开`XV3DGS.sln`，确保本项目是启动项目，然后以`Developer Editor`模式启动本地Windows调试器，会看到一个空白的地图
+打开`XV3DGS.sln`，注意等VS 2022左下角解析好了再操作，确保本项目是启动项目，然后以`Developer Editor`模式启动本地Windows调试器，会看到一个空白的地图
 [![image.png](https://i.postimg.cc/NMTmgvpC/image.png)](https://postimg.cc/Q98HbwLc)
 
 将Game Mode设置为`AirSim Mode`

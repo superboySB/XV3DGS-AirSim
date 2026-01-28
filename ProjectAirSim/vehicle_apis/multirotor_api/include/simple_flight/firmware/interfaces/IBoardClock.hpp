@@ -1,0 +1,23 @@
+// Copyright (C) Microsoft Corporation. 
+// Copyright (C) 2025 IAMAI CONSULTING CORP
+
+// MIT License. All rights reserved.
+
+#ifndef MULTIROTOR_API_SIMPLE_FLIGHT_FIRMWARE_INTERFACES_IBOARDCLOCK_HPP_
+#define MULTIROTOR_API_SIMPLE_FLIGHT_FIRMWARE_INTERFACES_IBOARDCLOCK_HPP_
+
+#include <cstdint>
+
+namespace simple_flight {
+
+class IBoardClock {
+ public:
+  virtual int64_t Micros() const = 0;
+  virtual int64_t Millis() const = 0;
+
+  virtual ~IBoardClock() = default;
+};
+
+}  // namespace simple_flight
+
+#endif  // MULTIROTOR_API_SIMPLE_FLIGHT_FIRMWARE_INTERFACES_IBOARDCLOCK_HPP_
