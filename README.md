@@ -45,7 +45,7 @@ $env:UE_ROOT = "D:\games\UE_5.2"
 
 一定耐心等所有跟configuration相关的读条，然后一定要去`build`呀（建议也跑一下`ctest`）。完事后，可在GUI中打开UE editor
 
-![](images\screenshot-20260128-110146.png)
+![](images/screenshot-20260128-110146.png)
 
 启动方式（简要）：先启动 BlocksEditor 并在 Editor 里点 Play；默认场景是空的，需要运行客户端脚本加载 scene config 才会生成无人机，需要装一下api的python包，然后看实例代码
 ```powershell
@@ -55,7 +55,7 @@ cd ProjectAirSim\client\python\example_user_scripts
 
 python hello_drone.py
 ```
-![](images\screenshot-20260128-171550.png)
+![](images/screenshot-20260128-171550.png)
 运行 `hello_drone.py` 后会显示主仿真窗口 + 3 个相机窗（ChaseCam、RGB-Image、Depth-Image），用于追踪视角与下视 RGB/深度图。
 
 
