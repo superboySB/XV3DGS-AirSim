@@ -91,7 +91,7 @@ $env:UE_ROOT = "D:\games\UE_5.2"
 最后启动编辑器并运行客户端脚本：打开 `XV3DGS.uproject`，然后运行客户端脚本（见上方“配置”里的 `hello_drone.py` 示例）加载 scene config。
 
 
-其实此时我们也完全可以基于一个已有的umap来做（混合已有UE资产、3DGS资产和机器人都是没问题的），但这里我们假设是从0开始做，那我们新建一个开放世界的关卡，然后用XV3DGS插件导入一个我们喜欢的ply文件，这里我们下载3DGS常用的一些训好的ply文件(https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip)，并选择`train`的相应ply文件进行导入
+其实此时我们也完全可以基于一个已有的umap来做（混合已有UE资产、3DGS资产和机器人都是没问题的），但这里我们假设是从0开始做，那我们新建一个开放世界的关卡，然后用XV3DGS插件导入一个我们喜欢的ply文件，这里我们下载3DGS常用的一些训好的[ply文件](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip)，并选择一些3GDS`train`好的相应ply文件进行导入
 [![image.png](https://i.postimg.cc/MpSQYLZ1/image.png)](https://postimg.cc/N5dFspH0)
 
 然后稍等就能看到一个生成好的结果，将里面的蓝图类拖进去。
@@ -99,6 +99,7 @@ $env:UE_ROOT = "D:\games\UE_5.2"
 
 我们大概率需要好好去旋转、平移一下出现的uassets，使得地面能尽量贴合我们给的地面、找到比较清晰的渲染位置，此外，你还可以参考元象官方的[教程](https://github.com/xverse-engine/XScene-UEPlugin/tree/main/UEPlugin)去裁剪、上色、打光等，基本可以看到一个这样的效果。（其实目前的插件不支持比较大的场景）
 [![image.png](https://i.postimg.cc/6Q5PPY6m/image.png)](https://postimg.cc/75dXG123)
+注意这些与ProjectAirsim的行为都是共存的，have fun！
 
 <!-- ## 老版本用法示例
 以下内容主要适用于旧版 AirSim 插件流程，保留作参考。
