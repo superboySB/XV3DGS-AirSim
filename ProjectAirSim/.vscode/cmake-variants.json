@@ -1,6 +1,6 @@
 {
   "platform": {
-    "default": "linux64",
+    "default": "win64",
     "description": "The platform.",
     "choices": {
       "win64": {
@@ -14,7 +14,7 @@
     }
   },
   "buildType": {
-    "default": "Debug",
+    "default": "Release",
     "description": "The build type.",
     "choices": {
       "Debug": {

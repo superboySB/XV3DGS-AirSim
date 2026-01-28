@@ -3,6 +3,7 @@
 
 ## 依赖
 - Windows 10 or newer
+- Python 3.10
 - Unreal Engine 5.2 , 建议在Epic启动器安装
 - Visual Studio 2022 ，仅提供编译环境、不再在上面GUI开发，建议就用2022不要用新版，并且安装基于C++的桌面工具、VS MSVC v143 14.37.32822 、VS 2022 C++ x64/x86 build tools 
 - Visual Studio Code
@@ -40,17 +41,39 @@ $env:UE_ROOT = "D:\games\UE_5.2"
 
 .\blocks_genprojfiles_vscode.bat
 ```
-然后在visual code里面用`open workspace from file`的方式打开`Blocks.code-workspace`，然后在单独的workspace中进行测试，注意仔细参考这里配置vscode: https://iamaisim.github.io/ProjectAirSim/development/use_source.html#vs-code-windows-linux
+然后在visual code里面用`open workspace from file`的方式打开`Blocks.code-workspace`，然后在单独的workspace中进行测试，注意`ProjectAirSim\.vscode\cmake-variants.json`里面的系统设置`win64/linux64`、`Debug/Release`都是独立的，而其余仔细参考这里配置vscode: https://iamaisim.github.io/ProjectAirSim/development/use_source.html#vs-code-windows-linux
 
-一定耐心等所有跟configuration相关的读条，然后一定要`build`一定`ctest`。完事后，可在GUI中打开UE editor
+一定耐心等所有跟configuration相关的读条，然后一定要去`build`呀（建议也跑一下`ctest`）。完事后，可在GUI中打开UE editor
 
 ![](images\screenshot-20260128-110146.png)
 
+启动方式（简要）：先启动 BlocksEditor 并在 Editor 里点 Play；默认场景是空的，需要运行客户端脚本加载 scene config 才会生成无人机，需要装一下api的python包，然后看实例代码
+```powershell
+python -m pip install -e .\ProjectAirSim\client\python\projectairsim
 
-## 常见用法示例
+cd ProjectAirSim\client\python\example_user_scripts
+
+python hello_drone.py
+```
+![](images\screenshot-20260128-171550.png)
+运行 `hello_drone.py` 后会显示主仿真窗口 + 3 个相机窗（ChaseCam、RGB-Image、Depth-Image），用于追踪视角与下视 RGB/深度图。
 
 
+## 常见用法示例（新）
+为了性能可以直接在release模式编译airsim，然后在`ProjectAirSim\.vscode\cmake-variants.json`里面也可以按照release模式编译，最后按`development`模式启动Game Editor了
+```powershell
+"C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.37.32822
 
+# D：
+cd .\projects\XV3DGS-AirSim\ProjectAirSim\
+
+build.cmd clean
+
+build.cmd simlibs_release
+```
+xxxx
+
+## 老版本用法示例
 然后右键源目录的`XV3DGS.uproject`,生成相应的VS工程索引
 [![image.png](https://i.postimg.cc/nh53z0Vg/image.png)](https://postimg.cc/0zYYXGw0)
 

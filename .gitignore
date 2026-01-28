@@ -1,4 +1,5 @@
 *.zip
+*.log
 .vs/
 XV3DGS.sln
 Saved/
