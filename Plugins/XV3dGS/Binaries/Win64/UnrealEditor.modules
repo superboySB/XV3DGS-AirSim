@@ -1,0 +1,9 @@
+{
+	"BuildId": "25360045",
+	"Modules": 
+	{
+		"GSEditor": "UnrealEditor-GSEditor.dll",
+		"GSImporter": "UnrealEditor-GSImporter.dll",
+		"GSRuntime": "UnrealEditor-GSRuntime.dll"
+	}
+}

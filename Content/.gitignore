@@ -1,7 +1,5 @@
 *
-!Collections
-!Developers
-!XV3dGS
 !.gitignore
-!demo_HLOD0_Instancing.uasset
-!demo.umap
+!Geometry
+!Geometry/**
+!BlocksMap.umap

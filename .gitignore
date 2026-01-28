@@ -6,3 +6,6 @@ Saved/
 Intermediate/
 DerivedDataCache/
 Platforms/
+.ignore
+XV3DGS.code-workspace
+.vscode/
