@@ -1,38 +1,40 @@
 # XV3DGS-AirSim
-搭建一个在Real2Sim模式中开飞机/汽车的workflow
+Language: **English** | [Read in Chinese](README_zh.md)
 
-## 依赖
+A workflow for flying drones/driving cars in a Real2Sim setup.
+
+## Dependencies
 - Windows 10 or newer
 - Python 3.10
-- Unreal Engine 5.2 , 建议在Epic启动器安装
-- Visual Studio 2022 ，仅提供编译环境、不再在上面GUI开发，建议就用2022不要用新版，并且安装基于C++的桌面工具、VS MSVC v143 14.37.32822 、VS 2022 C++ x64/x86 build tools 
+- Unreal Engine 5.2, recommended to install via Epic Launcher
+- Visual Studio 2022, used only as a build environment (no GUI development here). It is recommended to stay on VS 2022 (not newer versions), and install Desktop development with C++, VS MSVC v143 14.37.32822, and VS 2022 C++ x64/x86 build tools
 - Visual Studio Code
-- Several good videos for colmap (optional)
+- Several good videos for COLMAP (optional)
 
-## 使用简介
-**我们需要使用UE5.2 + Windows**，结合[官方教程](https://github.com/xverse-engine/XScene-UEPlugin/blob/main/UEPlugin/README_CN.md)，在官方release界面下载5.2版本的插件，并解压放置在`Plugins`文件夹内，然后启动projects即可，接下来我们不需要默认使用官方提供的[windows本地训练3DGS脚本](https://github.com/xverse-engine/XScene-UEPlugin/tree/main/UEPlugin#local-training-on-windows-platform)，而也可以使用我们自己的方法，只要注意官方说的[事项](https://github.com/xverse-engine/XScene-UEPlugin/blob/main/UEPlugin/Media/CaptureDOC_CN.md)合理拍摄一个mp4，最终就能训练得到一个还可以的相应ply点云文件，并用[XV3DGS插件](https://github.com/xverse-engine/XScene-UEPlugin/blob/main/UEPlugin/README_CN.md#%E5%AF%BC%E5%85%A5%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84-guassian-splatting-%E5%9C%BA%E6%99%AF)轻松导入到UE Editror中进行使用，这里官方还提供了[种种特性](https://github.com/xverse-engine/XScene-UEPlugin/tree/main/UEPlugin#feature-introduction)（如仿射变换、裁剪、打光、变色）,这里不做赘述。具体Airsim的非常详细的用法直接参考ProjectAirSim的官方文档：https://iamaisim.github.io/ProjectAirSim/index.html
+## Usage Overview
+**Use UE 5.2 + Windows**. Following the [official guide](https://github.com/xverse-engine/XScene-UEPlugin/blob/main/UEPlugin/README_CN.md), download the 5.2 plugin from the official releases page, unzip it into the `Plugins` folder, and launch the project. Next, you do not have to use the official [Windows local 3DGS training script](https://github.com/xverse-engine/XScene-UEPlugin/tree/main/UEPlugin#local-training-on-windows-platform); you can also use your own method. As long as you follow the official [capture notes](https://github.com/xverse-engine/XScene-UEPlugin/blob/main/UEPlugin/Media/CaptureDOC_CN.md) to record a proper mp4, you can train a decent `.ply` point cloud and easily import it into Unreal Editor using the [XV3DGS plugin](https://github.com/xverse-engine/XScene-UEPlugin/blob/main/UEPlugin/README_CN.md#%E5%AF%BC%E5%85%A5%E4%BD%A0%E8%87%AA%E5%B7%B1%E7%9A%84-guassian-splatting-%E5%9C%BA%E6%99%AF). The official plugin also provides various [features](https://github.com/xverse-engine/XScene-UEPlugin/tree/main/UEPlugin#feature-introduction) (such as affine transforms, clipping, lighting, and recoloring), which are not repeated here. For very detailed AirSim usage, refer directly to the ProjectAirSim docs: https://iamaisim.github.io/ProjectAirSim/index.html
 
 ![](images/9204209a036a4cc5118a55819e81a50.png)
 ![](images/9d2bf9c51bf73069ae41e836ef430aa.png)
 
-## 配置
-安装完全部依赖之后，我们假设已经从自己拍摄（或自带）的视频中完成了相应的sfm和3dgs重建，并且得到了相应的ply点云文件，需要导入到一个UE工程里，并且兼顾Airsim原本功能的机器人控制。为此，给出一个示例用法(假设UE和项目都放在D盘），先下载项目
+## Setup
+After installing all dependencies, assume you have already completed SfM and 3DGS reconstruction from your own video (or provided assets), and obtained a corresponding `.ply` point cloud file. You now need to import it into a UE project while retaining ProjectAirSim's robot control capabilities. Below is an example workflow (assuming both UE and this project are on drive D). First, clone the project:
 ```powershell
 cd D:\projects
 
 git clone https://github.com/superboySB/XV3DGS-AirSim
 ```
 ![](images/image.png)
-打开`Developer Command Prompt for VS 2022`进行集成环境编译，注意UE 5.2无法支持visual studio的预装比较新的 MSVC compiler 14.4+，需要改一下编译器环境。这里如需切换盘符直接输入`D:`即可,运行编译脚本,请保持网络畅通
+Open `Developer Command Prompt for VS 2022` to build the integrated environment. Note that UE 5.2 does not support the newer preinstalled MSVC compiler 14.4+, so you need to switch the compiler environment. To switch drive letters, directly input `D:`. Then run the build script and keep your network connection available.
 ```powershell
 "C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.37.32822
 
-# D：
+# D:
 cd .\projects\XV3DGS-AirSim\ProjectAirSim\
 
 build.cmd simlibs_debug
 ```
-可以回到`windows terminal`了，根据示例项目来生成visual studio工程文件,注意选定编译版本为`5.2`
+Then you can return to `Windows Terminal` and generate Visual Studio project files based on the sample project. Make sure to use UE version `5.2`.
 ```powershell
 cd D:\projects\XV3DGS-AirSim\ProjectAirSim\unreal\Blocks
 
@@ -41,13 +43,13 @@ $env:UE_ROOT = "D:\games\UE_5.2"
 
 .\blocks_genprojfiles_vscode.bat
 ```
-然后在visual code里面用`open workspace from file`的方式打开`Blocks.code-workspace`，然后在单独的workspace中进行测试，注意`ProjectAirSim\.vscode\cmake-variants.json`里面的系统设置`win64/linux64`、`Debug/Release`都是独立的，而其余仔细参考这里配置vscode: https://iamaisim.github.io/ProjectAirSim/development/use_source.html#vs-code-windows-linux
+Then in Visual Studio Code, use `Open Workspace from File` to open `Blocks.code-workspace`, and test in this standalone workspace. Note that in `ProjectAirSim\.vscode\cmake-variants.json`, system settings `win64/linux64` and `Debug/Release` are independent. For the rest, carefully follow the VS Code setup guide here: https://iamaisim.github.io/ProjectAirSim/development/use_source.html#vs-code-windows-linux
 
-一定耐心等所有跟configuration相关的读条，然后一定要去`build`呀（建议也跑一下`ctest`）。完事后，可在GUI中打开UE editor
+Wait patiently for all configuration progress bars to finish, then make sure to run `build` (it is also recommended to run `ctest`). After that, you can open UE Editor in GUI.
 
 ![](images/screenshot-20260128-110146.png)
 
-启动方式（简要）：先启动 BlocksEditor 并在 Editor 里点 Play；默认场景是空的，需要运行客户端脚本加载 scene config 才会生成无人机，需要装一下api的python包，然后看实例代码
+Startup (brief): launch BlocksEditor first and click Play in Editor. The default scene is empty; you need to run a client script to load scene config before the drone appears. Install the API Python package, then run the example script:
 ```powershell
 python -m pip install -e .\ProjectAirSim\client\python\projectairsim
 
@@ -56,15 +58,15 @@ cd ProjectAirSim\client\python\example_user_scripts
 python hello_drone.py
 ```
 ![](images/screenshot-20260128-171550.png)
-运行 `hello_drone.py` 后会显示主仿真窗口 + 3 个相机窗（ChaseCam、RGB-Image、Depth-Image），用于追踪视角与下视 RGB/深度图。
+After running `hello_drone.py`, you will see the main simulation window plus 3 camera windows (ChaseCam, RGB-Image, Depth-Image), used for chase view and downward RGB/depth images.
 
 
-## 常见用法示例（新）
-先构建 ProjectAirSim 插件（建议 Release）：
+## Common Usage Example (New)
+Build the ProjectAirSim plugin first (Release is recommended):
 ```powershell
 "C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.37.32822
 
-# D：
+# D:
 cd .\projects\XV3DGS-AirSim\ProjectAirSim\
 
 build.cmd clean
@@ -72,57 +74,57 @@ build.cmd clean
 build.cmd simlibs_release
 ```
 
-然后把 ProjectAirSim 插件拷贝到本项目 `Plugins`（与 `XV3dGS` 并列）：
+Then copy the ProjectAirSim plugins into this project's `Plugins` (alongside `XV3dGS`):
 ```powershell
-# 推荐按官方 use_plugin 文档，将打包好的 UE 插件包中的 Plugins 复制过来
-# 如果你用的是本仓库源码构建，可直接从 Blocks 的 Plugins 拷贝
+# Recommended per the official use_plugin docs: copy Plugins from the packaged UE plugin bundle
+# If you build from this repository source, you can copy directly from Blocks/Plugins
 Copy-Item -Recurse -Force .\ProjectAirSim\unreal\Blocks\Plugins\ProjectAirSim .\Plugins\
 Copy-Item -Recurse -Force .\ProjectAirSim\unreal\Blocks\Plugins\Drone .\Plugins\
 Copy-Item -Recurse -Force .\ProjectAirSim\unreal\Blocks\Plugins\Rover .\Plugins\
 ```
 
-然后先编译一次 Editor 模块：
+Then compile the Editor module once:
 ```powershell
 $env:UE_ROOT = "D:\games\UE_5.2"
 
 .\xv3dgs_build_editor_development.bat
 ```
 
-最后启动编辑器并运行客户端脚本：打开 `XV3DGS.uproject`，然后运行客户端脚本（见上方“配置”里的 `hello_drone.py` 示例）加载 scene config。
+Finally, launch the editor and run the client script: open `XV3DGS.uproject`, then run the client script (see the `hello_drone.py` example in "Setup" above) to load scene config.
 
 
-其实此时我们也完全可以基于一个已有的umap来做（混合已有UE资产、3DGS资产和机器人都是没问题的），但这里我们假设是从0开始做，那我们新建一个开放世界的关卡，然后用XV3DGS插件导入一个我们喜欢的ply文件，这里我们下载3DGS常用的一些训好的[ply文件](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip)，并选择一些3GDS`train`好的相应ply文件进行导入
+At this point, you can also build based on an existing `.umap` (mixing existing UE assets, 3DGS assets, and robots is all fine). Here we assume a from-scratch workflow: create a new open-world level, then use the XV3DGS plugin to import a preferred `.ply` file. You can download some commonly used pretrained 3DGS [ply files](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip), and import selected trained `.ply` files.
 [![image.png](https://i.postimg.cc/MpSQYLZ1/image.png)](https://postimg.cc/N5dFspH0)
 
-然后稍等就能看到一个生成好的结果，将里面的蓝图类拖进去。
+Then wait briefly and you will see a generated result; drag the blueprint class into the level.
 [![image.png](https://i.postimg.cc/dVFLPTyC/image.png)](https://postimg.cc/1fW9DXMR)
 
-我们大概率需要好好去旋转、平移一下出现的uassets，使得地面能尽量贴合我们给的地面、找到比较清晰的渲染位置，此外，你还可以参考元象官方的[教程](https://github.com/xverse-engine/XScene-UEPlugin/tree/main/UEPlugin)去裁剪、上色、打光等，基本可以看到一个这样的效果。（其实目前的插件不支持比较大的场景）
+You will most likely need to rotate/translate the imported uassets so the ground aligns as much as possible with your intended ground plane and to find a clear rendering position. In addition, you can refer to the XVerse official [guide](https://github.com/xverse-engine/XScene-UEPlugin/tree/main/UEPlugin) for clipping, recoloring, lighting, etc. You can achieve an effect like this. (The current plugin does not support very large scenes well.)
 [![image.png](https://i.postimg.cc/6Q5PPY6m/image.png)](https://postimg.cc/75dXG123)
-注意这些与ProjectAirsim的行为都是共存的，have fun！
+Note that all of this coexists with ProjectAirSim behavior. Have fun!
 
-<!-- ## 老版本用法示例
-以下内容主要适用于旧版 AirSim 插件流程，保留作参考。
-然后右键源目录的`XV3DGS.uproject`,生成相应的VS工程索引
+<!-- ## Old Usage Example
+The following content mainly applies to the old AirSim plugin workflow and is kept for reference.
+Then right-click `XV3DGS.uproject` in the source directory and generate the corresponding VS project index.
 [![image.png](https://i.postimg.cc/nh53z0Vg/image.png)](https://postimg.cc/0zYYXGw0)
 
-打开`XV3DGS.sln`，注意等VS 2022左下角解析好了再操作，确保本项目是启动项目，然后以`Developer Editor`模式启动本地Windows调试器，会看到一个空白的地图
+Open `XV3DGS.sln`. Wait until VS 2022 finishes parsing (lower-left status) before doing anything else. Ensure this project is set as the startup project, then start the local Windows debugger in `Developer Editor` mode, and you will see an empty map.
 [![image.png](https://i.postimg.cc/NMTmgvpC/image.png)](https://postimg.cc/Q98HbwLc)
 
-将Game Mode设置为`AirSim Mode`
+Set Game Mode to `AirSim Mode`.
 [![image.png](https://i.postimg.cc/1z8Yr43g/image.png)](https://postimg.cc/LqMTH9fR) -->
 
 
-<!-- 然后我们插入一个玩家出生点给我们的Airsim作为起始点
+<!-- Then insert a Player Start as the initial point for AirSim.
 [![image.png](https://i.postimg.cc/cHpGW8XY/image.png)](https://postimg.cc/2b7KF3p8)
-目前AirSim的`settings.json`如下，只是简单的引入一辆车作为例子，我们其实可以换成PX4飞机，也可以尝试接入ROS/ROS2去获取相应的topics、使用更加复杂的传感器、直接用手柄或者方向盘控制相应车机等等，这些功能都还是保留的，详见官方介绍。
+Current AirSim `settings.json` is shown below, using a car as a simple example. You can switch to PX4 aircraft, integrate ROS/ROS2 for topics, use more complex sensors, directly control with a gamepad or steering wheel, etc. These features are still available; see official docs for details.
 ```json
 {
     "SettingsVersion": 1.2,
     "SimMode": "Car"
   }
 ```
-最后,可以点击播放，正常在Editor运行这个仿真了，基本效果如下，目前RGB的获取是比较好的，其余的深度和语义暂时拿不到，这样得到的一个方案也可以进一步打包，也支持对Airsim源码本身、UE场景本身进行后续二次开发，当然也期待元象能**尽快把这个插件做的更好**！
+Finally, click Play to run the simulation in Editor. The basic effect is shown below. RGB capture works well at present, while depth and semantics are not yet available. This setup can also be packaged, and supports further secondary development on AirSim source code and UE scenes. We also hope XVerse can **improve this plugin soon**.
 [![image.png](https://i.postimg.cc/YCKKZghw/image.png)](https://postimg.cc/7fVWT53B)
 [![image.png](https://i.postimg.cc/0Q3HmRSq/image.png)](https://postimg.cc/ZB8ctQjf) -->
 
