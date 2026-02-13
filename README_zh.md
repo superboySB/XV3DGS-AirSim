@@ -94,29 +94,29 @@ $env:UE_ROOT = "D:\games\UE_5.2"
 
 
 其实此时我们也完全可以基于一个已有的umap来做（混合已有UE资产、3DGS资产和机器人都是没问题的），但这里我们假设是从0开始做，那我们新建一个开放世界的关卡，然后用XV3DGS插件导入一个我们喜欢的ply文件，这里我们下载3DGS常用的一些训好的[ply文件](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip)，并选择一些3GDS`train`好的相应ply文件进行导入
-[![image.png](https://i.postimg.cc/MpSQYLZ1/image.png)](https://postimg.cc/N5dFspH0)
+![](images/postimg_MpSQYLZ1.png)
 
 然后稍等就能看到一个生成好的结果，将里面的蓝图类拖进去。
-[![image.png](https://i.postimg.cc/dVFLPTyC/image.png)](https://postimg.cc/1fW9DXMR)
+![](images/postimg_dVFLPTyC.png)
 
 我们大概率需要好好去旋转、平移一下出现的uassets，使得地面能尽量贴合我们给的地面、找到比较清晰的渲染位置，此外，你还可以参考元象官方的[教程](https://github.com/xverse-engine/XScene-UEPlugin/tree/main/UEPlugin)去裁剪、上色、打光等，基本可以看到一个这样的效果。（其实目前的插件不支持比较大的场景）
-[![image.png](https://i.postimg.cc/6Q5PPY6m/image.png)](https://postimg.cc/75dXG123)
+![](images/postimg_6Q5PPY6m.png)
 注意这些与ProjectAirsim的行为都是共存的，have fun！
 
 <!-- ## 老版本用法示例
 以下内容主要适用于旧版 AirSim 插件流程，保留作参考。
 然后右键源目录的`XV3DGS.uproject`,生成相应的VS工程索引
-[![image.png](https://i.postimg.cc/nh53z0Vg/image.png)](https://postimg.cc/0zYYXGw0)
+![](images/postimg_nh53z0Vg.png)
 
 打开`XV3DGS.sln`，注意等VS 2022左下角解析好了再操作，确保本项目是启动项目，然后以`Developer Editor`模式启动本地Windows调试器，会看到一个空白的地图
-[![image.png](https://i.postimg.cc/NMTmgvpC/image.png)](https://postimg.cc/Q98HbwLc)
+![](images/postimg_NMTmgvpC.png)
 
 将Game Mode设置为`AirSim Mode`
-[![image.png](https://i.postimg.cc/1z8Yr43g/image.png)](https://postimg.cc/LqMTH9fR) -->
+![](images/postimg_1z8Yr43g.png) -->
 
 
 <!-- 然后我们插入一个玩家出生点给我们的Airsim作为起始点
-[![image.png](https://i.postimg.cc/cHpGW8XY/image.png)](https://postimg.cc/2b7KF3p8)
+![](images/postimg_cHpGW8XY.png)
 目前AirSim的`settings.json`如下，只是简单的引入一辆车作为例子，我们其实可以换成PX4飞机，也可以尝试接入ROS/ROS2去获取相应的topics、使用更加复杂的传感器、直接用手柄或者方向盘控制相应车机等等，这些功能都还是保留的，详见官方介绍。
 ```json
 {
@@ -125,8 +125,8 @@ $env:UE_ROOT = "D:\games\UE_5.2"
   }
 ```
 最后,可以点击播放，正常在Editor运行这个仿真了，基本效果如下，目前RGB的获取是比较好的，其余的深度和语义暂时拿不到，这样得到的一个方案也可以进一步打包，也支持对Airsim源码本身、UE场景本身进行后续二次开发，当然也期待元象能**尽快把这个插件做的更好**！
-[![image.png](https://i.postimg.cc/YCKKZghw/image.png)](https://postimg.cc/7fVWT53B)
-[![image.png](https://i.postimg.cc/0Q3HmRSq/image.png)](https://postimg.cc/ZB8ctQjf) -->
+![](images/postimg_YCKKZghw.png)
+![](images/postimg_0Q3HmRSq.png) -->
 
 
 ## Acknowledgement

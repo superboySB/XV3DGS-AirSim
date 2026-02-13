@@ -94,29 +94,29 @@ Finally, launch the editor and run the client script: open `XV3DGS.uproject`, th
 
 
 At this point, you can also build based on an existing `.umap` (mixing existing UE assets, 3DGS assets, and robots is all fine). Here we assume a from-scratch workflow: create a new open-world level, then use the XV3DGS plugin to import a preferred `.ply` file. You can download some commonly used pretrained 3DGS [ply files](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip), and import selected trained `.ply` files.
-[![image.png](https://i.postimg.cc/MpSQYLZ1/image.png)](https://postimg.cc/N5dFspH0)
+![](images/postimg_MpSQYLZ1.png)
 
 Then wait briefly and you will see a generated result; drag the blueprint class into the level.
-[![image.png](https://i.postimg.cc/dVFLPTyC/image.png)](https://postimg.cc/1fW9DXMR)
+![](images/postimg_dVFLPTyC.png)
 
 You will most likely need to rotate/translate the imported uassets so the ground aligns as much as possible with your intended ground plane and to find a clear rendering position. In addition, you can refer to the XVerse official [guide](https://github.com/xverse-engine/XScene-UEPlugin/tree/main/UEPlugin) for clipping, recoloring, lighting, etc. You can achieve an effect like this. (The current plugin does not support very large scenes well.)
-[![image.png](https://i.postimg.cc/6Q5PPY6m/image.png)](https://postimg.cc/75dXG123)
+![](images/postimg_6Q5PPY6m.png)
 Note that all of this coexists with ProjectAirSim behavior. Have fun!
 
 <!-- ## Old Usage Example
 The following content mainly applies to the old AirSim plugin workflow and is kept for reference.
 Then right-click `XV3DGS.uproject` in the source directory and generate the corresponding VS project index.
-[![image.png](https://i.postimg.cc/nh53z0Vg/image.png)](https://postimg.cc/0zYYXGw0)
+![](images/postimg_nh53z0Vg.png)
 
 Open `XV3DGS.sln`. Wait until VS 2022 finishes parsing (lower-left status) before doing anything else. Ensure this project is set as the startup project, then start the local Windows debugger in `Developer Editor` mode, and you will see an empty map.
-[![image.png](https://i.postimg.cc/NMTmgvpC/image.png)](https://postimg.cc/Q98HbwLc)
+![](images/postimg_NMTmgvpC.png)
 
 Set Game Mode to `AirSim Mode`.
-[![image.png](https://i.postimg.cc/1z8Yr43g/image.png)](https://postimg.cc/LqMTH9fR) -->
+![](images/postimg_1z8Yr43g.png) -->
 
 
 <!-- Then insert a Player Start as the initial point for AirSim.
-[![image.png](https://i.postimg.cc/cHpGW8XY/image.png)](https://postimg.cc/2b7KF3p8)
+![](images/postimg_cHpGW8XY.png)
 Current AirSim `settings.json` is shown below, using a car as a simple example. You can switch to PX4 aircraft, integrate ROS/ROS2 for topics, use more complex sensors, directly control with a gamepad or steering wheel, etc. These features are still available; see official docs for details.
 ```json
 {
@@ -125,8 +125,8 @@ Current AirSim `settings.json` is shown below, using a car as a simple example. 
   }
 ```
 Finally, click Play to run the simulation in Editor. The basic effect is shown below. RGB capture works well at present, while depth and semantics are not yet available. This setup can also be packaged, and supports further secondary development on AirSim source code and UE scenes. We also hope XVerse can **improve this plugin soon**.
-[![image.png](https://i.postimg.cc/YCKKZghw/image.png)](https://postimg.cc/7fVWT53B)
-[![image.png](https://i.postimg.cc/0Q3HmRSq/image.png)](https://postimg.cc/ZB8ctQjf) -->
+![](images/postimg_YCKKZghw.png)
+![](images/postimg_0Q3HmRSq.png) -->
 
 
 ## Acknowledgement
